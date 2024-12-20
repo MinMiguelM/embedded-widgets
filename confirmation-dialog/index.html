@@ -131,13 +131,17 @@
         try {
           var pathname = getPathname();
           document.getElementById('submit_button').disabled = true;
-          await fetch('https://api-fonmon.minagle.com/api/tmp/' + pathname)
-        } catch (e) {
-          console.log(e)
-        } finally {
+          if (!pathname) {
+            alert('Hubo un error, intentalo mas tarde.');
+            return;
+          }
+          await fetch('https://api-fonmon.minagle.com/api/tmp/' + pathname);
           $('#exampleModal').modal({
             show: true,
-          })
+          });
+        } catch (e) {
+          console.log(e);
+          alert('Hubo un error, intentalo mas tarde.');
         }
       }
 
